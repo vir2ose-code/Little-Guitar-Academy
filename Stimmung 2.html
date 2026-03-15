@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Guitar Academy - Stimmung</title>
+    <meta name="description" content="Stimme deine magische Gitarre!">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <!-- Start-Overlay für Audio-Freigabe (Browser-Policy) -->
+    <div id="start-overlay">
+        <div id="start-menu-btn">
+            <h2 class="magic-text" data-i18n="magicTextStart">Tippe hier, um die Magie zu wecken</h2>
+        </div>
+    </div>
+
+    <!-- Container für Seite 2 mit neuem Hintergrund -->
+    <div id="app" class="page-stimmung2">
+        <!-- Zurück-Button -->
+        <a href="index.html" class="back-btn" data-i18n="backBtn">⬅ Zurück</a>
+
+        <!-- Titel ganz oben -->
+        <h1 class="page-title" data-i18n="page1Title">Punkt 1. Die Seitenstimmung</h1>
+
+        <!-- Buttons und Saiten Container -->
+        <div id="tuning-interface">
+            <!-- Buttons über den Saiten -->
+            <div id="buttons-container">
+                <button class="tuning-btn" data-index="0">E</button>
+                <button class="tuning-btn" data-index="1">A</button>
+                <button class="tuning-btn" data-index="2">D</button>
+                <button class="tuning-btn" data-index="3">G</button>
+                <button class="tuning-btn" data-index="4">H</button>
+                <button class="tuning-btn" data-index="5">E</button>
+            </div>
+
+            <!-- 6 magische Saiten -->
+            <div id="strings-container">
+                <div class="guitar-string" data-index="0" data-note="E2"></div>
+                <div class="guitar-string" data-index="1" data-note="A2"></div>
+                <div class="guitar-string" data-index="2" data-note="D3"></div>
+                <div class="guitar-string" data-index="3" data-note="G3"></div>
+                <div class="guitar-string" data-index="4" data-note="H3"></div>
+                <div class="guitar-string" data-index="5" data-note="E4"></div>
+            </div>
+        </div>
+
+        <!-- Weiter-Button unten zentriert -->
+        <a href="Aufgabe 2.html" class="next-btn hidden" data-i18n="btnNext">Weiter zur Aufgabe 2. ➡</a>
+    </div>
+
+    <!-- Partikel-Container für visuellen Erfolg -->
+    <div id="particles"></div>
+
+    <script src="script.js"></script>
+    <script src="translations.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Guitar Academy - Expertise</title>
+    <meta name="description" content="Erfahre mehr über die Expertise hinter der App.">
+    <link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+    <div id="app" class="page-trust">
+        <!-- Discreet Back Link (Mockup focus) -->
+        <div style="width: 100%; text-align: left; margin-bottom: 10px;">
+            <a href="Aufgabe 2.html" class="black-btn" style="font-size: 0.8rem; padding: 5px 15px;" data-i18n="backBtn">⬅ Zurück</a>
+        </div>
+
+        <!-- Brand Header (Mockup) -->
+        <header class="brand-header">
+            <img src="LOGO VIR2OSE.png" alt="VIR2OSE Logo" class="brand-logo-img">
+        </header>
+
+        <h1 class="trust-title" data-i18n="trustTitle">ÜBER DIESE APP</h1>
+        
+        <p class="trust-intro" data-i18n="trustIntro">
+            Hinter der Little Guitar Academy steht geballte Expertise:
+        </p>
+
+        <ul class="trust-list">
+            <li data-i18n="trustPoint1">
+                <strong>Pädagogische Erfahrung:</strong> Als ehemaliger Musiklehrer weiß ich genau, wie man komplexe Inhalte für kleine Hände (6–8 Jahre) greifbar macht.
+            </li>
+            <li data-i18n="trustPoint2">
+                <strong>Audio-Exzellenz (HOFA):</strong> Als zertifizierter Songwriter, Mix- & Mastering-Engineer sowie Musikproduzent sorge ich dafür, dass jedes „Pling“ und jeder Akkord in der App in Studioqualität erklingt.
+            </li>
+            <li data-i18n="trustPoint3">
+                <strong>Visuelle Professionalität (IHK):</strong> Mein Abschluss als Mediengestalter Bild & Ton garantiert ein modernes, intuitives und technisch sauberes Interface, das Kinder begeistert und Eltern überzeugt.
+            </li>
+        </ul>
+
+        <a href="Aufgabe 4.html" class="gradient-btn" data-i18n="btnNextToContact">
+            Weiter zu Kontakt ➡
+        </a>
+
+        <!-- Footer Logos (Mockup) -->
+        <footer class="social-footer">
+            <div class="partner-logos">
+                <img src="IHK LOGO.jpg" alt="IHK" class="partner-logo">
+                <img src="HOFA LOGO.jpg" alt="HOFA" class="partner-logo">
+            </div>
+            <div class="social-links">
+                <a href="#"><img src="Instagram.png" alt="Instagram" class="social-icon"></a>
+                <a href="#"><img src="YouTube.png" alt="YouTube" class="social-icon"></a>
+                <a href="#"><img src="Facebook.png" alt="Facebook" class="social-icon"></a>
+            </div>
+        </footer>
+
+        <!-- Legal Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span class="copyright">© 2026 Little Guitar Academy by Waldemar Krucinski</span>
+                <a href="#" class="privacy-link" id="privacy-trigger" data-i18n="privacyTitle">Privacy Policy</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close">&times;</span>
+            <div class="modal-body">
+                <h2 data-i18n="privacyTitle">DATENSCHUTZ</h2>
+                <p data-i18n="privacyText">
+                    Hier steht deine Datenschutzerklärung. Diese App schützt die Privatsphäre der Kinder und erhebt keine persönlichen Daten ohne ausdrückliche Zustimmung der Eltern. Die technische Umsetzung erfolgt gemäß den Richtlinien der App-Stores.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="translations.js"></script>
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('privacy-modal');
+        const trigger = document.getElementById('privacy-trigger');
+        const closer = document.getElementById('modal-close');
+
+        trigger?.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        closer?.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

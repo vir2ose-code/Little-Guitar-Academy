@@ -1,0 +1,1024 @@
+/* ======================================================
+   Little Guitar Academy – Magical Design
+   ====================================================== */
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden; /* No outer website scroll */
+    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+}
+
+/* ==========================================
+   Utilities
+   ========================================== */
+.hidden {
+    display: none !important;
+}
+
+/* --- App-Container mit Mascot-Hintergrund --- */
+#app {
+    position: relative;
+    height: 95vh;
+    max-height: 1920px;
+    width: auto; /* Width determined by aspect-ratio */
+    aspect-ratio: 9 / 16;
+    background-color: #222;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+    overflow-x: hidden;
+    overflow-y: auto; /* Internal scrolling within the phone frame */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+/* --- Page specific Backgrounds --- */
+.page-menu {
+    background-image: url('mascot.png');
+}
+
+.page-stimmung2 {
+    background-image: url('Stimmung 2..png');
+}
+
+/* --- Navigation Buttons --- */
+#start-menu-btn {
+    position: absolute;
+    bottom: 5%; /* Weiter nach unten gesetzt */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 30px;
+    z-index: 100;
+    display: inline-block;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border-radius: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+#start-menu-btn .magic-text {
+    margin: 0;
+    font-size: 1.5rem; /* Schrift verkleinert */
+}
+
+#start-menu-btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 5px 30px rgba(255, 255, 255, 0.6);
+}
+
+/* --- Welcome Form (Hero Page) --- */
+.welcome-container {
+    position: absolute;
+    top: 22%; /* Unterkante des Input-Feldes landet exakt beim 4. Bund, ohne das Logo zu verkratzen */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 200;
+}
+
+.welcome-title {
+    font-size: 2.0rem; /* Kleiner und lesbarer */
+    margin: 0 0 5px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Bunte Buchstaben-Symphonie (Rosa, Gelb, Blau, Grün, Lila, Orange) */
+.welcome-title span:nth-child(6n+1) { color: #ff66cc; text-shadow: 0 0 10px rgba(255, 102, 204, 0.8); } /* Rosa */
+.welcome-title span:nth-child(6n+2) { color: #ffdb4d; text-shadow: 0 0 10px rgba(255, 219, 77, 0.8); } /* Gelb */
+.welcome-title span:nth-child(6n+3) { color: #4c4dff; text-shadow: 0 0 10px rgba(76, 77, 255, 0.8); } /* Blau */
+.welcome-title span:nth-child(6n+4) { color: #4cff4c; text-shadow: 0 0 10px rgba(76, 255, 76, 0.8); } /* Grün */
+.welcome-title span:nth-child(6n+5) { color: #d94dff; text-shadow: 0 0 10px rgba(217, 77, 255, 0.8); } /* Lila */
+.welcome-title span:nth-child(6n+6) { color: #ff8c4c; text-shadow: 0 0 10px rgba(255, 140, 76, 0.8); } /* Orange */
+
+.welcome-subtitle {
+    color: #ffdb4d; /* Strahlendes Gelb statt Weiß */
+    font-size: 1.1rem; /* Etwas kleiner */
+    margin: 0 0 15px 0;
+    letter-spacing: 0px; /* Zusammengeknutscht (schmaler) */
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.name-input {
+    background: rgba(0, 0, 0, 0.5); /* Dunklerer Hintergrund für besseren Kontrast */
+    backdrop-filter: blur(8px);
+    border: 3px solid rgba(255, 102, 204, 0.8); /* Bunte, deutliche Umrahmung statt Weiß */
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1.3rem;
+    font-family: inherit;
+    text-align: center;
+    width: 250px;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.name-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.name-input:focus {
+    width: 280px;
+    border-color: #ffdb4d; /* Wechselt zu strahlendem Gelb bei Fokus */
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(255, 219, 77, 0.8);
+}
+
+/* --- Sprachauswahl --- */
+#language-selector {
+    position: absolute;
+    top: 10%; /* Deutlich weiter runter */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 300;
+}
+
+.lang-title {
+    color: #ff66cc; /* Buntes Rosa statt Weiß */
+    font-weight: bold;
+    font-size: 1.2rem; /* Größer */
+    margin: 0 0 8px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.flags-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.lang-flag {
+    width: 55px; /* Größere Flaggen */
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+    filter: grayscale(40%); /* Nicht-aktive Flaggen leicht abgedunkelt */
+}
+
+.lang-flag:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-flag.active {
+    transform: scale(1.2);
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    filter: grayscale(0%);
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    z-index: 200;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.next-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    z-index: 200;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+.next-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+/* --- Start Overlay (für AudioContext Freigabe) --- */
+#start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+#start-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.magic-text {
+    font-size: 4vw;
+    color: #ffd700;
+    text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+    animation: float 2s ease-in-out infinite;
+    text-align: center;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- Page Title --- */
+.page-title {
+    position: absolute;
+    top: 120px; /* Deutlich höher, damit es nicht in die Buttons ragt */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: min(6vw, 2.2rem); /* Skaliert exakt mit der Fensterbreite */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 50;
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Cleaner, erwachsenerer Font */
+    font-weight: 600;
+    letter-spacing: 0.5px; /* Weniger breit */
+    white-space: nowrap; /* In einer Linie erzwingen (Vers) */
+    padding: 0 5%;
+}
+
+/* --- Tuning Interface (Buttons + Strings) --- */
+#tuning-interface {
+    position: absolute;
+    /* Höher angesetzt, bei der oberen Akustik-Loch-Kante */
+    top: 55%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Etwas breiter als vorher */
+    width: 380px; 
+    height: 55%; 
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+/* --- Buttons Container --- */
+#buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px; /* Abstand zu den Saiten */
+}
+
+/* --- Einzelne bunte Buttons --- */
+.tuning-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.tuning-btn:active {
+    transform: scale(0.9);
+}
+
+/* Button-Farben passend zu den Saiten */
+.tuning-btn[data-index="0"] { background: radial-gradient(circle, #ff4c4c, #cc0000); box-shadow: 0 0 15px #ff4c4c; } /* Rot */
+.tuning-btn[data-index="1"] { background: radial-gradient(circle, #ffdb4d, #cca300); box-shadow: 0 0 15px #ffdb4d; } /* Gelb */
+.tuning-btn[data-index="2"] { background: radial-gradient(circle, #4cff4c, #00cc00); box-shadow: 0 0 15px #4cff4c; } /* Grün */
+.tuning-btn[data-index="3"] { background: radial-gradient(circle, #4c4dff, #0000cc); box-shadow: 0 0 15px #4c4dff; } /* Blau */
+.tuning-btn[data-index="4"] { background: radial-gradient(circle, #d94dff, #9900cc); box-shadow: 0 0 15px #d94dff; } /* Lila */
+.tuning-btn[data-index="5"] { background: radial-gradient(circle, #ff8c4c, #cc5200); box-shadow: 0 0 15px #ff8c4c; } /* Orange */
+
+/* --- Saiten-Container --- */
+#strings-container {
+    width: 100%; 
+    flex-grow: 1; /* Nimmt den restlichen Platz nach unten ein */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Einzelne magische Saite --- */
+.guitar-string {
+    width: 45px; /* Exakt dieselbe Breite wie .tuning-btn, damit sie mittig darunter liegen! */
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* Transparente Hitbox für einfachen Hover */
+    background: transparent; 
+}
+
+/* Sichtbare Saite (Pseudo-Element), um dicke Hitbox beizubehalten */
+.guitar-string::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    border-radius: 4px;
+    opacity: 0.6; /* Dezent im Ruhezustand */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Saiten-Farben (Regenbogen) */
+.guitar-string[data-index="0"]::before {
+    background: #ff3b3b;
+    box-shadow: 0 0 5px #ff3b3b;
+    width: 8px; /* Tiefe E = dicker */
+}
+.guitar-string[data-index="1"]::before {
+    background: #ffb83b;
+    box-shadow: 0 0 5px #ffb83b;
+    width: 7px;
+}
+.guitar-string[data-index="2"]::before {
+    background: #3bff5b;
+    box-shadow: 0 0 5px #3bff5b;
+    width: 6px;
+}
+.guitar-string[data-index="3"]::before {
+    background: #3b9bff;
+    box-shadow: 0 0 5px #3b9bff;
+    width: 5px;
+}
+.guitar-string[data-index="4"]::before {
+    background: #b83bff;
+    box-shadow: 0 0 5px #b83bff;
+    width: 4px;
+}
+.guitar-string[data-index="5"]::before {
+    background: #ff3b9b; /* Hohes E = Pink/Orange für Magie */
+    box-shadow: 0 0 5px #ff3b9b;
+    width: 3px;
+}
+
+/* --- Hover-Effekt (Magisches Aufglühen) --- */
+.guitar-string:hover::before,
+.guitar-string.vibrate::before {
+    opacity: 1; /* Volles Aufglühen */
+    filter: brightness(1.5) contrast(1.2);
+}
+
+.guitar-string[data-index="0"]:hover::before, .guitar-string[data-index="0"].vibrate::before { box-shadow: 0 0 20px #ff3b3b, 0 0 40px #ff3b3b; }
+.guitar-string[data-index="1"]:hover::before, .guitar-string[data-index="1"].vibrate::before { box-shadow: 0 0 20px #ffb83b, 0 0 40px #ffb83b; }
+.guitar-string[data-index="2"]:hover::before, .guitar-string[data-index="2"].vibrate::before { box-shadow: 0 0 20px #3bff5b, 0 0 40px #3bff5b; }
+.guitar-string[data-index="3"]:hover::before, .guitar-string[data-index="3"].vibrate::before { box-shadow: 0 0 20px #3b9bff, 0 0 40px #3b9bff; }
+.guitar-string[data-index="4"]:hover::before, .guitar-string[data-index="4"].vibrate::before { box-shadow: 0 0 20px #b83bff, 0 0 40px #b83bff; }
+.guitar-string[data-index="5"]:hover::before, .guitar-string[data-index="5"].vibrate::before { box-shadow: 0 0 20px #ff3b9b, 0 0 40px #ff3b9b; }
+
+/* --- Vibrations-Animation --- */
+@keyframes string-vibrate {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(-3px); }
+    30% { transform: translateX(2.5px); }
+    45% { transform: translateX(-2px); }
+    60% { transform: translateX(1.5px); }
+    75% { transform: translateX(-1px); }
+    90% { transform: translateX(0.5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Wenn die Saite klingt (Hover + JS) */
+.guitar-string.vibrate::before {
+    animation: string-vibrate 0.12s ease-in-out infinite;
+}
+
+/* --- Fade-Out Effekt für Seitenwechsel --- */
+.page-fade-out {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    pointer-events: none;
+}
+
+/* ==========================================
+   Aufgabe 2: Akkord-Carousel (Vollbild)
+   ========================================== */
+.page-aufgabe2 {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    /* Hintergrund wird bildschirmfüllend skaliert, aber nicht übermäßig vergrößert */
+    background-size: cover;
+    background-position: center;
+}
+
+#carousel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slides-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain; /* Damit das ganze Bild sichtbar bleibt! */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Button unten */
+    padding-bottom: 2%; /* Weniger Abstand, damit der Akkordname nicht verdeckt wird */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Navigation Pfeile */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border-radius: 40px;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1);
+    border-color: #ffdb4d;
+    box-shadow: 0 0 20px rgba(255, 219, 77, 0.8);
+    color: #ffdb4d;
+}
+
+.left-arrow { left: 30px; }
+.right-arrow { right: 30px; }
+
+/* Play Chord Button (Magisch!) */
+.play-chord-btn {
+    background: radial-gradient(circle, #ff66cc, #cc0066);
+    border: 3px solid #fff;
+    border-radius: 40px;
+    padding: 15px 40px;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff66cc, 0 8px 30px rgba(0,0,0,0.5);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 50;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.play-chord-btn:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 0 40px #ff66cc, 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.play-chord-btn.clicked {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px #ff66cc;
+    filter: brightness(1.2);
+}
+
+/* --- Page 3: Vertrauens-Seite (Professional Only) --- */
+/* Legacy .page-trust removed for consolidation */
+
+.page-trust .content-overlay {
+    background: rgba(0, 0, 0, 0.7); /* Dunkler Overlay für Lesbarkeit */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: auto; /* Vertikal zentrieren */
+}
+
+.trust-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #ffd700; /* Gold für Vertrauen */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.trust-intro {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.trust-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.trust-list li {
+    font-size: 0.9rem; /* Erheblich kleiner */
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-section, .privacy-section {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.contact-section h2, .privacy-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.magic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.magic-form input, .magic-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.magic-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.magic-form input:focus, .magic-form textarea:focus {
+    border-color: #ffd700;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.privacy-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px inset rgba(255, 255, 255, 0.05);
+}
+
+/* Back Button Fix für Vertrauensseite */
+.page-trust .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: auto;
+}
+
+/* Responsive Anpassungen für Textseite */
+@media (max-width: 600px) {
+    .page-trust { padding: 40px 10px; }
+    .page-trust .content-overlay { padding: 20px; }
+    .trust-title { font-size: 1.5rem; }
+}
+
+/* ==========================================
+   High-Fidelity Branding & Footer (Mockup)
+   ========================================== */
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.brand-logo-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 15px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+.brand-name-gold {
+    color: #94845b;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.1;
+}
+
+.page-trust {
+    background: url('HOLZ HINTERGRUND CLEAN 1080x1920.png') no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll; /* Scroll with content inside #app */
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Fill #app container width */
+    height: auto;
+    min-height: 100.1%; /* Push content down to allow internal scroll if needed */
+    box-sizing: border-box;
+    border-radius: 40px;
+}
+
+.trust-title {
+    color: #94845b; 
+    font-size: 1.6rem; /* Still smaller */
+    font-weight: 900;
+    margin: 5px 0 10px 0; 
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.trust-intro {
+    font-size: 1.1rem; /* Verkleinert von 1.3rem */
+    font-weight: bold;
+    text-align: center;
+    max-width: 90%;
+    margin-bottom: 15px; /* Verkleinert von 25px */
+    line-height: 1.3;
+}
+
+.trust-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 90%;
+}
+
+.trust-list li {
+    margin-bottom: 10px;
+    font-size: 0.85rem; /* Still a bit smaller to fit more */
+    line-height: 1.3;
+    position: relative;
+    padding-left: 15px;
+}
+
+.trust-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ffdb4d;
+}
+
+/* Einheitlicher Dark-Style Button (Replikation von .black-btn) */
+.gradient-btn {
+    background: #222;
+    border: 2px solid #555;
+    color: white;
+    padding: 12px 30px; /* Kompakter */
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem; /* Verkleinert von 1.3rem */
+    margin: 15px 0; /* Verkleinert von 30px */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.gradient-btn:hover {
+    background: #000;
+    transform: scale(1.05);
+    border-color: #94845b; /* Passendes Gold für den Hover-Rand */
+}
+
+.gradient-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 0, 204, 0.4);
+}
+
+/* Footer Layout (Mockup) */
+.social-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    padding-bottom: 40px; /* Mehr Platz für den Button darüber */
+}
+
+.partner-logos {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.partner-logo {
+    height: 35px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Kontakt Form Styling (Mockup) */
+.contact-container {
+    width: 90%;
+    max-width: 400px;
+}
+
+.contact-label {
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.dark-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.dark-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-btn-light {
+    width: 100%;
+    background: #222;
+    border: 2px solid #555;
+    color: white;
+    padding: 12px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.submit-btn-light:hover {
+    background: #000;
+    border-color: #94845b;
+}
+
+.privacy-section-styled {
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+}
+
+.black-btn {
+    background: #222;
+    border: 2px solid #555;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.black-btn:hover {
+    background: #000;
+}
+
+/* Finale Link-Buttons (In der Mitte der Höhe platziert, wie die Pfeile) */
+#finish-btn {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#finish-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1);
+    border-color: #ffdb4d;
+    box-shadow: 0 0 20px rgba(255, 219, 77, 0.8);
+    color: #ffdb4d;
+}
+
+/* Globaler Footer Style */
+.app-footer {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 0.75rem;
+    color: rgba(148, 132, 91, 0.7); /* Sanfter Goldton */
+    font-family: 'Arial', sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.privacy-link {
+    color: #94845b;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.privacy-link:hover {
+    text-decoration: underline;
+    color: #ffdb4d;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #2a2a2a;
+    border: 1px solid #94845b;
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #94845b;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #ffdb4d;
+}
+
+.modal-body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.modal-body h2 {
+    color: #94845b;
+    margin-top: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}

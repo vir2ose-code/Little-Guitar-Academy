@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Guitar Academy</title>
+    <meta name="description" content="Magische Gitarren-Saiten für Kinder!">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app" class="page-menu">
+        <!-- Sprachauswahl -->
+        <div id="language-selector">
+            <h3 data-i18n="langSelectTitle" class="lang-title">SPRACHAUSWAHL</h3>
+            <div class="flags-container">
+                <img src="DE.png" alt="Deutsch" class="lang-flag active" data-lang="de">
+                <img src="EN.jpg" alt="English" class="lang-flag" data-lang="en">
+                <img src="PL.png" alt="Polski" class="lang-flag" data-lang="pl">
+                <img src="ES.png" alt="Español" class="lang-flag" data-lang="es">
+            </div>
+        </div>
+
+        <!-- Willkommens-Bereich über dem Gitarrenhals (1. und 2. Bund) -->
+        <div class="welcome-container">
+            <h1 class="welcome-title" data-i18n="welcomeTitle">
+                <span>H</span><span>E</span><span>R</span><span>Z</span><span>L</span><span>I</span><span>C</span><span>H</span>
+                &nbsp;
+                <span>W</span><span>I</span><span>L</span><span>L</span><span>K</span><span>O</span><span>M</span><span>M</span><span>E</span><span>N</span>
+            </h1>
+            <p class="welcome-subtitle" data-i18n="welcomeSubtitle">GIB DEINEN VORNAMEN EIN</p>
+            <input type="text" id="player-name" class="name-input" placeholder="Dein Name..." autocomplete="off" data-i18n="namePlaceholder">
+        </div>
+
+        <!-- Hero Menu: Magischer Button zur nächsten Seite (nach unten verschoben) -->
+        <a href="Stimmung 2.html" id="start-menu-btn">
+            <h2 class="magic-text" data-i18n="btnStart">Ab ins Gitarren-Studio</h2>
+        </a>
+    </div>
+
+    <!-- Übersetzungs-Skript -->
+    <script src="translations.js"></script>
+
+    <!-- Transition und Intro-Sound Skript -->
+    <script>
+        // Wenn schon ein Name gespeichert ist, lade ihn
+        const savedName = localStorage.getItem('playerFirstName');
+        if (savedName) {
+            document.getElementById('player-name').value = savedName;
+        }
+
+        document.getElementById('start-menu-btn').addEventListener('click', function(e) {
+            e.preventDefault(); // Verhindere den sofortigen Wechsel
+            const target = this.href;
+            
+            // Name speichern
+            const nameInput = document.getElementById('player-name').value.trim();
+            if (nameInput) {
+                localStorage.setItem('playerFirstName', nameInput);
+            }
+            
+            // Spiele das Intro ab
+            const intro = new Audio('GITARREN INTRO HERO PAGE/INTRO Little Guitar Academy.wav');
+            intro.play().catch(err => console.log('Autoplay blockiert:', err));
+
+            // Füge die Fade-Out Klasse hinzu (in style.css definiert)
+            document.body.classList.add('page-fade-out');
+
+            // Wechsle nach einer kurzen Verzögerung (z.B. 1.8 Sekunden)
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1800);
+        });
+    </script>
+</body>
+</html>
