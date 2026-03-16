@@ -60,7 +60,7 @@ body {
 /* --- Navigation Buttons --- */
 #start-menu-btn {
     position: absolute;
-    bottom: 5%; /* Weiter nach unten gesetzt */
+    bottom: 12%; /* Etwas höher geschoben */
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 30px;
@@ -91,7 +91,7 @@ body {
 /* --- Welcome Form (Hero Page) --- */
 .welcome-container {
     position: absolute;
-    top: 15%; /* Höher geschoben, um nicht mit dem Logo zu kollidieren */
+    top: 18%; /* Etwas tiefer, um Abstand zu den Flaggen zu schaffen */
     width: 100%;
     display: flex;
     flex-direction: column;
