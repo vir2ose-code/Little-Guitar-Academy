@@ -61,7 +61,7 @@ body {
 .top-nav-arrow {
     position: absolute;
     top: 15px;
-    font-size: 2.22rem; /* Dezents aber gut tippbar */
+    font-size: 1.8rem; /* Dezents aber gut tippbar */
     z-index: 1000;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -96,6 +96,10 @@ body {
 }
 
 /* --- Old Navigation Buttons (Hide if needed or keep for Hero) --- */
+.page-aufgabe2 .nav-arrow,
+#finish-btn {
+    display: none !important;
+}
 #start-menu-btn {
     position: absolute;
     bottom: 12%; /* Etwas höher geschoben */

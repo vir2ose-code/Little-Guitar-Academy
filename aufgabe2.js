@@ -20,9 +20,8 @@ let isAudioEnabled = true; // Audio ist standardmäßig erlaubt, da User explizi
 
 // DOM Elemente
 const wrapper = document.getElementById("slides-wrapper");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const finishBtn = document.getElementById("finish-btn");
+const backArrow = document.getElementById("top-nav-back");
+const nextArrow = document.getElementById("top-nav-next");
 
 function renderSlide(index) {
     wrapper.innerHTML = ""; // Container leeren
@@ -61,47 +60,26 @@ function renderSlide(index) {
     }
 
     wrapper.appendChild(slideEl);
-
-    // Pfeile aktualisieren
-    prevBtn.setAttribute("data-i18n", "navPrev");
-    prevBtn.style.display = index === 0 ? "none" : "flex";
-    
-    if (index === SLIDES.length - 1) {
-        if (nextBtn) nextBtn.style.display = "none";
-        // 'Weiter zur Aufgabe 3' Pfeil einblenden
-        if (finishBtn) finishBtn.classList.remove("hidden");
-    } else {
-        if (nextBtn) nextBtn.style.display = "flex";
-        if (index >= 2) {
-            if (nextBtn) nextBtn.setAttribute("data-i18n", "navNextChord");
-        } else if (index === 1) {
-            if (nextBtn) nextBtn.setAttribute("data-i18n", "navToChords");
-        } else {
-            if (nextBtn) nextBtn.setAttribute("data-i18n", "navNextSimple");
-        }
-        if (finishBtn) {
-            finishBtn.classList.add("hidden");
-        }
-    }
-    
-    // Texte sofort übersetzen
-    if (typeof applyTranslations === 'function') {
-        applyTranslations(currentLang);
-    }
 }
 
 // Event Listener für Navigation
-prevBtn.addEventListener("click", () => {
+backArrow.addEventListener("click", () => {
     if (currentIndex > 0) {
         currentIndex--;
         renderSlide(currentIndex);
+    } else {
+        // Vom ersten Slide zurück zur Stimmung 2
+        window.location.href = "Stimmung 2.html";
     }
 });
 
-nextBtn.addEventListener("click", () => {
+nextArrow.addEventListener("click", () => {
     if (currentIndex < SLIDES.length - 1) {
         currentIndex++;
         renderSlide(currentIndex);
+    } else {
+        // Vom letzten Slide weiter zur Aufgabe 3
+        window.location.href = "Aufgabe 3.html";
     }
 });
 
