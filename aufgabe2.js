@@ -67,21 +67,20 @@ function renderSlide(index) {
     prevBtn.style.display = index === 0 ? "none" : "flex";
     
     if (index === SLIDES.length - 1) {
-        nextBtn.style.display = "none";
-        // 'Weiter zur Aufgabe 3' Button einblenden
+        if (nextBtn) nextBtn.style.display = "none";
+        // 'Weiter zur Aufgabe 3' Pfeil einblenden
         if (finishBtn) finishBtn.classList.remove("hidden");
     } else {
-        nextBtn.style.display = "flex";
+        if (nextBtn) nextBtn.style.display = "flex";
         if (index >= 2) {
-            nextBtn.setAttribute("data-i18n", "navNextChord");
+            if (nextBtn) nextBtn.setAttribute("data-i18n", "navNextChord");
         } else if (index === 1) {
-            nextBtn.setAttribute("data-i18n", "navToChords");
+            if (nextBtn) nextBtn.setAttribute("data-i18n", "navToChords");
         } else {
-            nextBtn.setAttribute("data-i18n", "navNextSimple");
+            if (nextBtn) nextBtn.setAttribute("data-i18n", "navNextSimple");
         }
         if (finishBtn) {
             finishBtn.classList.add("hidden");
-            finishBtn.setAttribute("data-i18n", "navNextSimple");
         }
     }
     

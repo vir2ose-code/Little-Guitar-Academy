@@ -49,9 +49,9 @@ startOverlay.addEventListener("click", async () => {
         // Overlay sanft ausblenden
         startOverlay.classList.add("hidden");
         
-        // Weiter-Button einblenden
-        const nextBtn = document.querySelector(".next-btn");
-        if (nextBtn) nextBtn.classList.remove("hidden");
+        // Weiter-Pfeil einblenden
+        const nextArrow = document.getElementById("stimmung2-next-arrow");
+        if (nextArrow) nextArrow.classList.remove("hidden");
 
         // Sounds im Hintergrund laden
         await preloadAllSounds();

@@ -57,7 +57,45 @@ body {
     background-image: url('Stimmung 2..png');
 }
 
-/* --- Navigation Buttons --- */
+/* --- Global Top Navigation Arrows (Phase 57 Improvement) --- */
+.top-nav-arrow {
+    position: absolute;
+    top: 15px;
+    font-size: 2.22rem; /* Dezents aber gut tippbar */
+    z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.top-nav-next {
+    right: 20px;
+    color: #4cff4c; /* Glow Grün */
+    text-shadow: 0 0 15px #4cff4c, 0 0 30px rgba(76, 255, 76, 0.5);
+}
+
+.top-nav-next:hover {
+    transform: scale(1.2) translateX(3px);
+    filter: brightness(1.2);
+}
+
+.top-nav-back {
+    left: 20px;
+    color: #ff4c4c; /* Rote Farbe */
+    text-shadow: 0 0 15px #ff4c4c, 0 0 30px rgba(255, 76, 76, 0.5);
+}
+
+.top-nav-back:hover {
+    transform: scale(1.2) translateX(-3px);
+    filter: brightness(1.2);
+}
+
+.top-nav-arrow.hidden {
+    display: none;
+}
+
+/* --- Old Navigation Buttons (Hide if needed or keep for Hero) --- */
 #start-menu-btn {
     position: absolute;
     bottom: 12%; /* Etwas höher geschoben */
@@ -222,24 +260,8 @@ body {
     transform: scale(1.05);
 }
 
-.next-btn {
-    position: absolute;
-    bottom: 12%; /* Höher geschoben, wie auf der Hero Page */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 30px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    color: white;
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-radius: 30px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    z-index: 200;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    white-space: nowrap;
+.next-btn, .gradient-btn, .submit-btn-light, .black-btn {
+    display: none !important; /* Verstecken, da wir jetzt die Pfeile oben nutzen */
 }
 
 .next-btn:hover {
