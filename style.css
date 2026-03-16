@@ -523,8 +523,8 @@ body {
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Button unten */
-    padding-bottom: 2%; /* Weniger Abstand, damit der Akkordname nicht verdeckt wird */
+    align-items: center; /* Zentriert für flexiblere Positionierung */
+    padding-bottom: 0;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
@@ -570,17 +570,18 @@ body {
 /* Play Chord Button (Magisch!) */
 .play-chord-btn {
     background: radial-gradient(circle, #ff66cc, #cc0066);
-    border: 3px solid #fff;
-    border-radius: 40px;
-    padding: 15px 40px;
+    border: 2px solid #fff; /* Dünnerer Rand */
+    border-radius: 30px;
+    padding: 8px 25px; /* Kompakter */
     color: white;
-    font-size: 2rem;
+    font-size: 1.2rem; /* Halbe Größe (ca.) */
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 20px #ff66cc, 0 8px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px #ff66cc, 0 5px 20px rgba(0,0,0,0.5);
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 50;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-top: 81.5%; /* Optimaler Bereich: Zwischen Buchstaben und Akkordname */
 }
 
 .play-chord-btn:hover {
