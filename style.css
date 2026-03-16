@@ -224,7 +224,7 @@ body {
 
 .next-btn {
     position: absolute;
-    bottom: 30px;
+    bottom: 12%; /* Höher geschoben, wie auf der Hero Page */
     left: 50%;
     transform: translateX(-50%);
     padding: 12px 30px;
@@ -287,32 +287,31 @@ body {
 /* --- Page Title --- */
 .page-title {
     position: absolute;
-    top: 120px; /* Deutlich höher, damit es nicht in die Buttons ragt */
+    top: 120px; 
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     text-align: center;
     color: rgba(255, 255, 255, 0.9);
-    font-size: min(6vw, 2.2rem); /* Skaliert exakt mit der Fensterbreite */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-size: min(5vw, 1.6rem); /* Etwas kleiner */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
     z-index: 50;
     margin: 0;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Cleaner, erwachsenerer Font */
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
     font-weight: 600;
-    letter-spacing: 0.5px; /* Weniger breit */
-    white-space: nowrap; /* In einer Linie erzwingen (Vers) */
+    letter-spacing: -0.5px; /* Schmaler */
+    white-space: nowrap; 
     padding: 0 5%;
 }
 
 /* --- Tuning Interface (Buttons + Strings) --- */
 #tuning-interface {
     position: absolute;
-    /* Höher angesetzt, bei der oberen Akustik-Loch-Kante */
     top: 55%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Etwas breiter als vorher */
-    width: 380px; 
+    width: 85%; /* Schmaler für Mobile (Prozent statt feste px) */
+    max-width: 330px; 
     height: 55%; 
     display: flex;
     flex-direction: column;
@@ -329,11 +328,11 @@ body {
 
 /* --- Einzelne bunte Buttons --- */
 .tuning-btn {
-    width: 45px;
-    height: 45px;
+    width: 40px; /* Etwas schmaler */
+    height: 40px;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Etwas kleiner */
     font-weight: bold;
     color: white;
     cursor: pointer;
@@ -367,13 +366,12 @@ body {
 
 /* --- Einzelne magische Saite --- */
 .guitar-string {
-    width: 45px; /* Exakt dieselbe Breite wie .tuning-btn, damit sie mittig darunter liegen! */
+    width: 40px; /* Etwas schmaler */
     height: 100%;
     cursor: pointer;
     position: relative;
     display: flex;
     justify-content: center;
-    /* Transparente Hitbox für einfachen Hover */
     background: transparent; 
 }
 
