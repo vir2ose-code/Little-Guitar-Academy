@@ -1,7 +1,7 @@
 const translations = {
     de: {
         langSelectTitle: "SPRACHAUSWAHL",
-        welcomeTitle: "HERZLICH WILLKOMMEN",
+        welcomeTitle: "WILLKOMMEN",
         welcomeSubtitle: "GIB DEINEN VORNAMEN EIN",
         namePlaceholder: "Dein Name...",
         btnStart: "Ab ins Gitarren-Studio",
