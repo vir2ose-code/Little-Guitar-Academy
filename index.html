@@ -36,13 +36,59 @@
         <a href="Stimmung 2.html" id="start-menu-btn">
             <h2 class="magic-text" data-i18n="btnStart">Ab ins Gitarren-Studio</h2>
         </a>
+
+        <!-- Filigraner Footer (Phase 57) -->
+        <footer class="delicate-footer">
+            <a href="#" id="open-safety">Sicherheit & Pädagogik</a> | 
+            <a href="#" id="open-privacy">Datenschutz & Impressum</a>
+        </footer>
+    </div>
+
+    <!-- Modals für Rechtliches (Phase 57) -->
+    <div id="modal-safety" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <h2>Sicherheit & Pädagogik</h2>
+                <ul>
+                    <li><strong>Gemeinsames Erlebnis:</strong> Diese App ist als pädagogisches Werkzeug für Kinder (6-8 Jahre) konzipiert. Die Nutzung sollte ausschließlich unter ständiger Aufsicht von Erwachsenen erfolgen.</li>
+                    <li><strong>Gehörschutz:</strong> Das Gehör von Kindern ist hochempfindlich. Bitte stellen Sie die Lautstärke Ihres Geräts auf ein Minimum ein, bevor Ihr Kind die interaktiven Saiten berührt.</li>
+                    <li><strong>Pädagogik:</strong> Wir empfehlen eine begrenzte tägliche Nutzungsdauer als Teil einer kreativen Entdeckungsreise.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-privacy" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <h2>Datenschutz & Impressum</h2>
+                <ul>
+                    <li><strong>Keine Kinderdaten:</strong> Wir erheben wissentlich keine personenbezogenen Daten von Minderjährigen.</li>
+                    <li><strong>Analyse:</strong> Wir nutzen den Google-Tag zur technischen Optimierung ohne Identifizierung der Nutzer.</li>
+                    <li><strong>Hosting:</strong> Diese App wird sicher auf Vercel betrieben.</li>
+                    <li><strong>Kontakt:</strong> Waldemar Krucinski – info@little-guitar-academy.com</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Übersetzungs-Skript -->
     <script src="translations.js"></script>
+    <script src="main.js"></script>
 
     <!-- Transition und Intro-Sound Skript -->
     <script>
+        // 0. Service Worker Registration (Phase 57)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker geladen (v57)', reg))
+                    .catch(err => console.log('Service Worker Fehler:', err));
+            });
+        }
+
         // Wenn schon ein Name gespeichert ist, lade ihn
         const savedName = localStorage.getItem('playerFirstName');
         if (savedName) {

@@ -114,4 +114,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statsRow) {
         statsObserver.observe(statsRow);
     }
+
+    // --- Phase 57: Legal Modal Logic ---
+    const modals = {
+        safety: {
+            trigger: document.getElementById('open-safety'),
+            modal: document.getElementById('modal-safety')
+        },
+        privacy: {
+            trigger: document.getElementById('open-privacy'),
+            modal: document.getElementById('modal-privacy')
+        }
+    };
+
+    function openModal(id) {
+        if (modals[id] && modals[id].modal) {
+            modals[id].modal.style.display = 'flex';
+        }
+    }
+
+    function closeModal(modalEl) {
+        if (modalEl) {
+            modalEl.style.display = 'none';
+        }
+    }
+
+    // Attach open listeners
+    Object.keys(modals).forEach(key => {
+        modals[key].trigger?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(key);
+        });
+    });
+
+    // Attach close listeners
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        // Close on X btn
+        overlay.querySelector('.modal-close')?.addEventListener('click', () => {
+            closeModal(overlay);
+        });
+        // Close on background click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal(overlay);
+            }
+        });
+    });
+
+    // Handle Contact Form Mockup
+    document.querySelector('.submit-btn-light')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("Vielen Dank! Deine Nachricht wurde (simuliert) gesendet.");
+    });
 });
