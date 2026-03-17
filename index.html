@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Guitar Academy</title>
     <meta name="description" content="Magische Gitarren-Saiten für Kinder!">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icon-192.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -82,7 +85,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker geladen (v57)', reg))
+                    .then(reg => console.log('Service Worker geladen (v58)', reg))
                     .catch(err => console.log('Service Worker Fehler:', err));
             });
         }
