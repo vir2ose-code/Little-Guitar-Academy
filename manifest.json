@@ -6,6 +6,7 @@
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
   "theme_color": "#1a1a2e",
   "background_color": "#000000",
@@ -43,7 +44,7 @@
   "screenshots": [
     {
       "src": "/mascot.png",
-      "sizes": "816x1456",
+      "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Little Guitar Academy - Startseite"
