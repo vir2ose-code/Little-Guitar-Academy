@@ -583,18 +583,19 @@ body {
 /* Play Chord Button (Magisch!) */
 .play-chord-btn {
     background: radial-gradient(circle, #ff66cc, #cc0066);
-    border: 2px solid #fff; /* Dünnerer Rand */
+    border: 2px solid #fff;
     border-radius: 30px;
-    padding: 8px 25px; /* Kompakter */
+    padding: 8px 25px;
     color: white;
-    font-size: 1.2rem; /* Halbe Größe (ca.) */
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 0 15px #ff66cc, 0 5px 20px rgba(0,0,0,0.5);
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 50;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    margin-top: 88%; /* Zwischen Akkordname und unterer Holzkante */
+    align-self: flex-end; /* Button am unteren Rand des Slides */
+    margin-bottom: 5%; /* Abstand zur unteren Holzkante */
 }
 
 .play-chord-btn:hover {
