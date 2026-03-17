@@ -102,10 +102,10 @@ body {
 }
 #start-menu-btn {
     position: absolute;
-    bottom: 12%; /* Etwas höher geschoben */
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 25px; /* Etwas weniger horizontales Padding */
+    padding: 8px 20px;
     z-index: 100;
     display: inline-block;
     text-decoration: none;
@@ -115,14 +115,14 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    white-space: normal; /* Zeilenumbruch erlauben! */
-    max-width: 85vw; /* Verhindert Überlaufen auf Mobilgeräten */
+    white-space: nowrap; /* Immer einzeilig! */
+    max-width: 90vw;
     text-align: center;
 }
 
 #start-menu-btn .magic-text {
     margin: 0;
-    font-size: 1.4rem; /* Leicht verkleinert für Desktop */
+    font-size: 1.2rem; /* Kompakter auf Desktop */
 }
 
 #start-menu-btn:hover {
@@ -135,7 +135,10 @@ body {
 /* Mobile Optimierung für den Start-Button */
 @media (max-width: 600px) {
     #start-menu-btn .magic-text {
-        font-size: 1.1rem; /* Kompakter auf Handys */
+        font-size: 0.95rem; /* Einzeilig auch auf kleinen Handys */
+    }
+    #start-menu-btn {
+        padding: 7px 16px;
     }
 }
 
