@@ -57,11 +57,11 @@
       "label": "Little Guitar Academy - Stimmung"
     },
     {
-      "src": "/Last Page Little Guitar Academy.png",
-      "sizes": "1080x1920",
+      "src": "/LGA PING Breit.png",
+      "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Little Guitar Academy - Desktop Ansicht"
+      "label": "Little Guitar Academy - Desktop Banner"
     }
   ]
 }
