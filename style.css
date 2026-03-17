@@ -61,12 +61,13 @@ body {
 .top-nav-arrow {
     position: absolute;
     top: 15px;
-    font-size: 1.8rem; /* Dezents aber gut tippbar */
+    font-size: 1.5rem; /* Einheitliche Größe auf allen Seiten */
     z-index: 1000;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
     font-weight: bold;
+    line-height: 1; /* Verhindert unterschiedliche Höhen */
 }
 
 .top-nav-next {
@@ -593,7 +594,7 @@ body {
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 50;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    margin-top: 81.5%; /* Optimaler Bereich: Zwischen Buchstaben und Akkordname */
+    margin-top: 88%; /* Zwischen Akkordname und unterer Holzkante */
 }
 
 .play-chord-btn:hover {
