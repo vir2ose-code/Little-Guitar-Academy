@@ -277,7 +277,7 @@ body {
     transform: scale(1.05);
 }
 
-.next-btn, .gradient-btn, .submit-btn-light, .black-btn {
+.next-btn, .gradient-btn {
     display: none !important; /* Verstecken, da wir jetzt die Pfeile oben nutzen */
 }
 
