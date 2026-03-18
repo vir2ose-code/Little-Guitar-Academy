@@ -22,10 +22,13 @@
             <div class="brand-name-gold">GOLDEN MIRROR STUDIO</div>
         </header>
 
-        <!-- Kontakt Sektion -->
+        <!-- Kontakt Sektion (Phase 65: Web3Forms) -->
         <div class="contact-container">
             <label class="contact-label" data-i18n="contactTitle">KONTAKT</label>
-            <form id="contact-form" action="https://formspree.io/vir2ose@gmail.com" method="POST">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="8f6b9f38-9a80-4149-9198-162855806eac">
+                
                 <input type="text" name="name" class="dark-input" placeholder="Dein Name..." required>
                 <input type="email" name="email" class="dark-input" placeholder="E-Mail..." required>
                 <textarea name="message" class="dark-input" rows="4" placeholder="Nachricht..." required></textarea>
@@ -34,6 +37,8 @@
                     NACHRICHT SENDEN
                 </button>
             </form>
+            <!-- Status Meldung -->
+            <div id="form-status" style="text-align: center; margin-top: 15px; font-weight: bold; min-height: 24px;"></div>
         </div>
 
         <!-- Zurück zur Startseite (Häuschen zentriert) -->

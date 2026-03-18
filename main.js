@@ -161,9 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Phase 64: Contact Form Submission ---
+    // --- Phase 65: Web3Forms Contact Form ---
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm && formStatus) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.submit-btn-light');
@@ -172,27 +174,46 @@ document.addEventListener('DOMContentLoaded', () => {
             // UI Feedback
             submitBtn.disabled = true;
             submitBtn.innerHTML = "⌛ ...";
+            formStatus.innerHTML = ""; 
+            formStatus.style.color = "white";
 
             const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
             try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: json
                 });
 
-                if (response.ok) {
-                    alert(translations[currentLang]?.msgSuccess || "Gesendet!");
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    formStatus.innerHTML = translations[currentLang]?.msgSuccess || "Gesendet!";
+                    formStatus.style.color = "#4cff4c"; // Magisches Grün
                     contactForm.reset();
                 } else {
-                    alert(translations[currentLang]?.msgError || "Fehler!");
+                    console.error("Web3Forms error:", result);
+                    formStatus.innerHTML = result.message || translations[currentLang]?.msgError || "Fehler!";
+                    formStatus.style.color = "#ff4c4c"; 
                 }
             } catch (error) {
-                console.error("Form error:", error);
-                alert(translations[currentLang]?.msgError || "Fehler!");
+                console.error("Network error:", error);
+                formStatus.innerHTML = translations[currentLang]?.msgError || "Fehler!";
+                formStatus.style.color = "#ff4c4c";
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
+                
+                // Meldung nach 5 Sekunden ausblenden
+                setTimeout(() => {
+                    formStatus.innerHTML = "";
+                }, 5000);
             }
         });
     }
