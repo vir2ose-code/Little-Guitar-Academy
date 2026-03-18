@@ -161,9 +161,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle Contact Form Mockup
-    document.querySelector('.submit-btn-light')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("Vielen Dank! Deine Nachricht wurde (simuliert) gesendet.");
-    });
+    // --- Phase 64: Contact Form Submission ---
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('.submit-btn-light');
+            const originalText = submitBtn.innerHTML;
+            
+            // UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "⌛ ...";
+
+            const formData = new FormData(contactForm);
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert(translations[currentLang]?.msgSuccess || "Gesendet!");
+                    contactForm.reset();
+                } else {
+                    alert(translations[currentLang]?.msgError || "Fehler!");
+                }
+            } catch (error) {
+                console.error("Form error:", error);
+                alert(translations[currentLang]?.msgError || "Fehler!");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
 });

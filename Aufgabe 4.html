@@ -25,13 +25,15 @@
         <!-- Kontakt Sektion -->
         <div class="contact-container">
             <label class="contact-label" data-i18n="contactTitle">KONTAKT</label>
-            <input type="text" class="dark-input" placeholder="Dein Name...">
-            <input type="email" class="dark-input" placeholder="E-Mail...">
-            <textarea class="dark-input" rows="4" placeholder="Nachricht..."></textarea>
-            
-            <button class="submit-btn-light" data-i18n="btnSendMessage">
-                NACHRICHT SENDEN
-            </button>
+            <form id="contact-form" action="https://formspree.io/vir2ose@gmail.com" method="POST">
+                <input type="text" name="name" class="dark-input" placeholder="Dein Name..." required>
+                <input type="email" name="email" class="dark-input" placeholder="E-Mail..." required>
+                <textarea name="message" class="dark-input" rows="4" placeholder="Nachricht..." required></textarea>
+                
+                <button type="submit" class="submit-btn-light" data-i18n="btnSendMessage">
+                    NACHRICHT SENDEN
+                </button>
+            </form>
         </div>
 
         <!-- Zurück zur Startseite (Häuschen zentriert) -->
