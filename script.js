@@ -21,7 +21,6 @@ const stringAudios = [];
 let isLoaded = false;
 
 // DOM Elemente
-const startOverlay = document.getElementById("start-overlay");
 const strings = document.querySelectorAll(".guitar-string");
 const tuningButtons = document.querySelectorAll(".tuning-btn");
 const vibrationTimers = {};
@@ -31,8 +30,8 @@ const debounceTimers = {};
 // 1. Initialisierung & Audio Freigabe
 // ==========================================
 
-// Browser verlangen einen Klick, bevor Audio gespielt werden darf
-startOverlay.addEventListener("click", async () => {
+// AudioContext wird beim ersten Kontakt initialisiert (Da das Overlay entfernt wurde)
+async function initAudio() {
     try {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -41,27 +40,14 @@ startOverlay.addEventListener("click", async () => {
             await audioCtx.resume();
         }
 
-        // --- Intro-Sound abspielen ---
-        const introAudio = new Audio('GITARREN INTRO HERO PAGE/INTRO Little Guitar Academy.wav');
-        introAudio.volume = 0.8;
-        introAudio.play().catch(e => console.warn("Intro Audio blockiert:", e));
-
-        // Overlay sanft ausblenden
-        startOverlay.classList.add("hidden");
-        
-        // Weiter-Pfeil einblenden
-        const nextArrow = document.getElementById("stimmung2-next-arrow");
-        if (nextArrow) nextArrow.classList.remove("hidden");
-
-        // Sounds im Hintergrund laden
-        await preloadAllSounds();
-        isLoaded = true;
-
-        setupHoverInteractions();
+        if (!isLoaded) {
+            await preloadAllSounds();
+            isLoaded = true;
+        }
     } catch (e) {
         console.error("Audio-Initialisierung fehlgeschlagen:", e);
     }
-});
+}
 
 // ==========================================
 // 2. Audio Preloading (HTML5 Audio für file:// Support)
@@ -88,7 +74,8 @@ function setupHoverInteractions() {
     strings.forEach((stringEl) => {
         const index = parseInt(stringEl.dataset.index, 10);
 
-        stringEl.addEventListener("mouseenter", () => {
+        stringEl.addEventListener("mouseenter", async () => {
+            await initAudio();
             if (!isLoaded) return;
             
             // Verhindern, dass die Saite 10x pro Sekunde triggert,
@@ -103,8 +90,9 @@ function setupHoverInteractions() {
         });
 
         // Touch-Support für Tablets/Smartphones
-        stringEl.addEventListener("touchstart", (e) => {
+        stringEl.addEventListener("touchstart", async (e) => {
             e.preventDefault(); // Verhindert Scrollen beim Streichen über die Saite
+            await initAudio();
             if (!isLoaded) return;
             
             if (debounceTimers[index]) return;
@@ -120,7 +108,8 @@ function setupHoverInteractions() {
             const index = parseInt(btn.dataset.index, 10);
 
             // Hover über den Button
-            btn.addEventListener("mouseenter", () => {
+            btn.addEventListener("mouseenter", async () => {
+                await initAudio();
                 if (!isLoaded) return;
                 if (debounceTimers[index]) return;
                 
@@ -132,8 +121,9 @@ function setupHoverInteractions() {
             });
 
             // Touch auf den Button
-            btn.addEventListener("touchstart", (e) => {
+            btn.addEventListener("touchstart", async (e) => {
                 // Erlaubt das Clicken, aber verhindert doppeltes Triggern
+                await initAudio();
                 if (!isLoaded) return;
                 
                 if (debounceTimers[index]) return;
@@ -144,6 +134,11 @@ function setupHoverInteractions() {
         });
     }
 }
+
+// Call setup interactions when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    setupHoverInteractions();
+});
 
 function playString(index) {
     // 1. Audio abspielen (überlappend möglich durch CloneNode)

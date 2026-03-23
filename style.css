@@ -1096,3 +1096,18 @@ body {
     box-shadow: 0 0 25px rgba(76, 255, 76, 0.7);
     transform: scale(1.1);
 }
+
+/* --- Mobile Optimierungen --- */
+@media (max-width: 600px) {
+    /* PLAY Button auf Handys weiter nach unten rücken (unter die Tonart-Bezeichnung) */
+    .play-chord-btn {
+        margin-bottom: 0%; 
+        transform: translateY(50%); /* Noch weiter nach unten verschieben */
+    }
+
+    /* Pfeile auf Handys größer und konsistent machen */
+    .top-nav-arrow {
+        font-size: 2.2rem;
+        top: 10px;
+    }
+}

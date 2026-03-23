@@ -170,11 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.submit-btn-light');
             const originalText = submitBtn.innerHTML;
-            
+
             // UI Feedback
             submitBtn.disabled = true;
             submitBtn.innerHTML = "⌛ ...";
-            formStatus.innerHTML = ""; 
+            formStatus.innerHTML = "";
             formStatus.style.color = "white";
 
             const formData = new FormData(contactForm);
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     console.error("Web3Forms error:", result);
                     formStatus.innerHTML = result.message || translations[currentLang]?.msgError || "Fehler!";
-                    formStatus.style.color = "#ff4c4c"; 
+                    formStatus.style.color = "#ff4c4c";
                 }
             } catch (error) {
                 console.error("Network error:", error);
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
-                
+
                 // Meldung nach 5 Sekunden ausblenden
                 setTimeout(() => {
                     formStatus.innerHTML = "";
