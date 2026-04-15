@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.little_guitar_academy.twa",
+    "sha256_cert_fingerprints": [
+      "4C:E0:76:97:C6:20:AA:33:D9:B4:B4:28:5B:FC:7A:1B:8E:7E:C9:93:42:FA:32:82:B4:A6:D1:BA:F7:C0:2B:0B"
+    ]
+  }
+}]
